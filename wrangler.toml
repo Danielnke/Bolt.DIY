@@ -16,3 +16,6 @@ node_compat = true
 format = "modules"
 main = "workers-site/index.js"
 dir = "build/client"
+
+[[build.external]]
+external = ["@remix-run/cloudflare-pages"]
