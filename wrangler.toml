@@ -5,13 +5,9 @@ compatibility_date = "2024-07-01"
 
 [build]
 command = "pnpm install && pnpm run build"
-output_directory = "build/client"
-
-[build.upload]
-format = "service-worker"
 
 [site]
-bucket = "./build/client"
+bucket = "build/client"
 
 send_metrics = false
 
@@ -19,11 +15,10 @@ send_metrics = false
 directory = "functions"
 node_compat = true
 
-[[build.external]]
-pattern = "@remix-run/cloudflare-pages"
+[[build.upload]]
+format = "modules"
+main = "./functions/[[path]].js"
+dir = "build/client"
 
 [[build.external]]
-pattern = "../build/server"
-
-[[build.external]]
-pattern = "../build/server/index.js"
+external = ["@remix-run/cloudflare-pages", "@remix-run/cloudflare"]
