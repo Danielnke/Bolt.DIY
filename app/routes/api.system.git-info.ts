@@ -60,7 +60,7 @@ const getGitHubInfo = async (repoFullName: string) => {
   }
 };
 
-export const loader = async (_: Request, loadContext: AppLoadContext) => {
+export const loader = async (_: Request, _loadContext: AppLoadContext) => {
   const githubInfo = await getGitHubInfo('stackblitz-labs/bolt.diy');
 
   const response = {

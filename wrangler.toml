@@ -2,5 +2,15 @@
 name = "bolt-diy"
 compatibility_flags = ["nodejs_compat"]
 compatibility_date = "2024-07-01"
-pages_build_output_dir = "./build/client"
+
+[build]
+command = "pnpm install && pnpm run build"
+output_directory = "build/client"
+
+[build.upload]
+format = "service-worker"
+
+[site]
+bucket = "./build/client"
+
 send_metrics = false

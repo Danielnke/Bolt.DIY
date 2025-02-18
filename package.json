@@ -7,8 +7,8 @@
   "type": "module",
   "version": "0.0.6",
   "scripts": {
-    "deploy": "npm run build && wrangler pages deploy",
-    "build": "cross-env NODE_OPTIONS='--max-old-space-size=4096' remix vite:build",
+    "deploy": "pnpm run build && wrangler pages deploy build/client",
+    "build": "remix vite:build",
     "dev": "node pre-start.cjs  && remix vite:dev",
     "test": "vitest --run",
     "test:watch": "vitest",

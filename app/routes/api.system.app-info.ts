@@ -1,6 +1,6 @@
 import type { ActionFunctionArgs, LoaderFunction } from '@remix-run/cloudflare';
 import { json } from '@remix-run/cloudflare';
-import { AppLoadContext } from '@remix-run/cloudflare';
+import type { AppLoadContext } from '@remix-run/cloudflare';
 
 // These are injected by Vite at build time
 declare const __APP_VERSION: string;
@@ -58,7 +58,13 @@ const getAppResponse = () => {
   };
 };
 
-export const loader: LoaderFunction = async ({ request: _request, context }: { request: Request; context: AppLoadContext }) => {
+export const loader: LoaderFunction = async ({
+  request: _request,
+  context: _context,
+}: {
+  request: Request;
+  context: AppLoadContext;
+}) => {
   try {
     return json(getAppResponse());
   } catch (error) {
