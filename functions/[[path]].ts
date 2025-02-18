@@ -6,13 +6,20 @@ import * as remixBuild from '../build/server/index.js';
 
 const build = remixBuild as unknown as ServerBuild;
 
-const handleRequest = createPagesFunctionHandler({
-  build,
-  mode: process.env.NODE_ENV,
-  getLoadContext: (context) => context.env,
-});
+interface Context {
+  env: any;
+}
+
+// Define types for parameters
+function handler(context: { request: Request, env: any }) {
+  return createPagesFunctionHandler({
+    build,
+    mode: process.env.NODE_ENV,
+    getLoadContext: (context) => context.env,
+  });
+}
 
 // @ts-ignore
-export const onRequest = async (context) => {
-  return handleRequest(context);
+export const onRequest = async (context: { request: Request, env: any }) => {
+  return handler(context);
 };

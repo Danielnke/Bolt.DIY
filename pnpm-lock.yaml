@@ -144,7 +144,7 @@ importers:
         specifier: ^2.15.2
         version: 2.15.3(@cloudflare/workers-types@4.20250204.0)(typescript@5.7.3)
       '@remix-run/cloudflare-pages':
-        specifier: ^2.15.2
+        specifier: latest
         version: 2.15.3(@cloudflare/workers-types@4.20250204.0)(typescript@5.7.3)
       '@remix-run/node':
         specifier: ^2.15.2
