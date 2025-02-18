@@ -1,9 +1,5 @@
-import { json } from '@remix-run/node';
-import type { ActionFunction } from '@remix-run/node';
-import { exec } from 'child_process';
-import { promisify } from 'util';
-
-const execAsync = promisify(exec);
+import { json } from '@remix-run/cloudflare';
+import type { ActionFunction } from '@remix-run/cloudflare';
 
 interface UpdateRequestBody {
   branch: string;
@@ -31,14 +27,14 @@ interface UpdateProgress {
 
 export const action: ActionFunction = async ({ request }) => {
   if (request.method !== 'POST') {
-    return json({ error: 'Method not allowed' }, { status: 405 });
+    return { error: 'Method not allowed' };
   }
 
   try {
     const body = await request.json();
 
     if (!body || typeof body !== 'object' || !('branch' in body) || typeof body.branch !== 'string') {
-      return json({ error: 'Invalid request body: branch is required and must be a string' }, { status: 400 });
+      return { error: 'Invalid request body: branch is required and must be a string' };
     }
 
     const { branch, autoUpdate = false } = body as UpdateRequestBody;
@@ -478,13 +474,10 @@ export const action: ActionFunction = async ({ request }) => {
     });
   } catch (err) {
     console.error('Update preparation failed:', err);
-    return json(
-      {
-        success: false,
-        error: err instanceof Error ? err.message : 'Unknown error occurred while preparing update',
-      },
-      { status: 500 },
-    );
+    return {
+      success: false,
+      error: err instanceof Error ? err.message : 'Unknown error occurred while preparing update',
+    };
   }
 };
 
