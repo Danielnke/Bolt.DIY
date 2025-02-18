@@ -14,3 +14,16 @@ format = "service-worker"
 bucket = "./build/client"
 
 send_metrics = false
+
+[functions]
+directory = "functions"
+node_compat = true
+
+[[build.external]]
+pattern = "@remix-run/cloudflare-pages"
+
+[[build.external]]
+pattern = "../build/server"
+
+[[build.external]]
+pattern = "../build/server/index.js"
