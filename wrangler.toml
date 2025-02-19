@@ -14,8 +14,9 @@ node_compat = true
 
 [[build.upload]]
 format = "modules"
-main = "workers-site/index.js"
+main = "functions/[[path]].js"
 dir = "build/client"
 
-[[build.external]]
-external = ["@remix-run/cloudflare-pages"]
+[env.production]
+compatibility_date = "2024-07-01"
+compatibility_flags = ["nodejs_compat"]
