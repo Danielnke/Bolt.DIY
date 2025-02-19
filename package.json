@@ -31,7 +31,7 @@
     "node": ">=18.18.0"
   },
   "dependencies": {
-    "@remix-run/cloudflare-pages": "latest",
+    "@remix-run/cloudflare-pages": "^2.15.2",
     "@remix-run/cloudflare": "^2.15.2",
     "@remix-run/node": "^2.15.2",
     "@remix-run/react": "^2.15.2",
